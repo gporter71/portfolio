@@ -10,7 +10,7 @@ def hello():
 @app.route('/update_server', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        repo = git.Repo('.', search_parent_directories=True)
+        repo = git.Repo(search_parent_directories=True)
         origin = repo.remotes.origin
         origin.pull()
     else:
