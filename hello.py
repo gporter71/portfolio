@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @app.route('/update_server', methods=['POST'])
 def webhook():
@@ -17,3 +17,19 @@ def webhook():
         return 'Updated PythonAnywhere successfully', 200
     else:
         return 'Wrong event type', 400
+
+@app.route('/home')
+def home():
+    return hello()
+
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/contact_save')
+def contact_save():
+    return render_template('contact.html')
