@@ -1438,3 +1438,4 @@ venv/Scripts/pythonw.exe
 __pycache__/hello.cpython-38.pyc
 __pycache__/hello.cpython-39.pyc
 static/scss/.DS_Store
+.env

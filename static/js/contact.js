@@ -1,56 +1,86 @@
 $(document).ready(function() {
-    let name = "";
-    let email = "";
-    let phone = "";
-    let msg = "";
-
-    var count = 0;
-    var questions = [
+    let count = 0;
+    let data = [
         {
             name: "name",
-            text: "Please enter your email address",
             val: "",
+            text: "Please enter your name"
         },
         {
             name: "email",
-            text: 'Please enter your phone number',
-            val: ""
+            val: "",
+            text: "Please enter your email address"
         },
         {
-            name: 'phone',
-            text: 'Please enter any specific notes you would like to add to the message',
-            val: ""
+            name: "phone",
+            val: "",
+            text: "Please enter your phone number"
         },
         {
-            name: 'message',
+            name: "message",
+            val: "",
+            text: "Please enter any message if any you want to add"
+        },
+        {
+            name: "summary"
+        },
+        {
+            name: "confirm",
             val: ""
         }
     ];
 
     $('body').terminal(function(command) {
-        if (command){
-            if (count === 3){
-                let item = questions[count];
-                item.val = command;
-                for(var i=0; i<questions.length; i++){
-                    let name = questions[i].name;
-                    let val = questions[i].val;
-                    this.echo("for your " + name + ", you have: " + val);
+        if (command === "test"){
+            $("#fname").val("test");
+            $("#btn-submit").click();
+        }
+
+        if (!command){
+            this.echo(data[count].text);
+        }
+        else{
+            if (data.length >= count){
+                item = data[count];
+                if (item.name === "summary"){
+                    if (command === "Y" || command === "y"){
+                        $("#name").val(data[0].val);
+                        $("#email").val(data[1].val);
+                        $("#phone").val(data[2].val);
+                        $("#message").val(data[3].val);
+                        $.ajax({
+                            url: '/contact_send',
+                            data: $('form').serialize(),
+                            type: 'POST',
+                            success: function(response){
+                                console.log(response);
+                            },
+                            error: function(error){
+                                console.log(error);
+                            }
+                        })
+                        this.echo("Thank you for sending your information!")
+                    }
                 }
-                this.echo("Is this information correct? (Y)/(N)");
-                count++;
-            }
-            else if (count === 4){
-                if (command === "Y" || command === "y"){
-                    this.echo("Thank you for sending your information!")
+                else if (item.name === "message"){
+                    item.val = command;
+                    for(var i=0; i < data.length; i++){
+                        let name = data[i].name;
+                        let val = data[i].val;
+                        if (data[i].text){
+                            this.echo("for your " + name + ", you have: " + val);
+                        }
+                    }
+                    this.echo("Is this information correct? (Y)/(N)");
+                    count++;
                 }
-            }
-            else{
-                let item = questions[count];
-                item.val = command;
-                count++;
-                if (item.text){
-                    this.echo(item.text);
+                else{
+                    item.val = command;
+                    count++;
+                    let nextItem = data[count];
+                    if (nextItem && nextItem.text){
+                        this.echo(nextItem.text);
+                    }
                 }
             }
         }
