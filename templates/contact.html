@@ -9,39 +9,32 @@
 <script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
 <script src="{{url_for('static', filename='js/contact.js')}}"></script>
 
+<div>
+  <form action="{{url_for('contact_save')}}" method='post'>
+    <div class="row m-0">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-4" id="div-terminal"></div>
+      <div class="col-sm-4" style="background-color: gray;">
+        
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name..">
+        
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" name="phone" placeholder="Your phone number..">
+        
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" placeholder="Your email..">
+        
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write something.."></textarea>
+        
+          <input class="save-button" type="button" id="btn-save" value="submit" />
+          <span id="span-submit-line"></span>
+        
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+  </form>
+</div>
 
-<form action="{{url_for('contact_save')}}" method='post'>
-  <div style="display: none">
-    <p><input type = "text" id="name" name = "name" /></p>
-    <p><input type = "text" id="phone" name = "phone" /></p>
-    <p><input type = "text" id="email" name = "email" /></p>
-    <p><input type = "text" id="message" name = "message" /></p>
-    <p><input type = "submit" id="btn-submit" value = "submit" /></p>
-  </div>
-</form> 
-
-<!-- Commenting out for now. Plan to add the option to switch to a normal contact page
-  <div class="container">
-    <form action="action_page.php">
-  
-      <label for="fname">First Name</label>
-      <input type="text" id="fname" name="firstname" placeholder="Your name..">
-  
-      <label for="lname">Last Name</label>
-      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-  
-      <label for="country">Country</label>
-      <select id="country" name="country">
-        <option value="australia">Australia</option>
-        <option value="canada">Canada</option>
-        <option value="usa">USA</option>
-      </select>
-  
-      <label for="subject">Subject</label>
-      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-  
-      <input type="submit" value="Submit">
-  
-    </form>
-</div> -->
 {% endblock %}

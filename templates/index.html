@@ -6,7 +6,33 @@
 {% block body %}
 	<script src="{{url_for('static', filename='js/index.js')}}"></script>
 
-		<div class="greeting">
-			<h3>Hey, I'm Gabriel Porter, but most people just call me Gabe. </h3>
+	<div class="row m-0">
+		<div class="col-md-4"></div>
+		<div class="col-md-4" style="text-align: center;">
+			<a href="https://linkedin.com/in/gabriel-porter-21788416b" target="_blank">
+				<img
+				alt="LinkedInLogo"
+				src="{{url_for('static', filename='images/LI-In-Bug.png')}}"
+				style="max-width: 120px; height:auto;"/>
+			</a>
+			<a href="https://github.com/gporter71" target="_blank">
+				<img 
+				alt="GithubLogo"
+				src="{{url_for('static', filename='images/GitHub-Mark-Light-120px-plus.png')}}"
+				style="max-width: 100%; height: auto;"/>
+			</a>
 		</div>
+		<div class="col-md-4"></div>
+	</div>
+
+	<div class="row m-0">
+		<div class="col-md-4"></div>
+		<div class="col-md-4" style="text-align: center; font-size:larger;">
+			Hey, I'm Gabriel Porter, but most people just call me Gabe.
+			I'm an ambitious and hardworking full stack developer with experience in Python, C#, .NET and more.
+			My passion has always been trying to solve difficult problems, and challenging myself both professionally and personally.
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+
 {% endblock %}
