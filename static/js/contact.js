@@ -30,7 +30,7 @@ $(document).ready(function() {
         }
     ];
 
-    $('body').terminal(function(command) {
+    $("#div-terminal").terminal(function(command) {
         if (command === "test"){
             $("#fname").val("test");
             $("#btn-submit").click();
@@ -59,11 +59,13 @@ $(document).ready(function() {
                                 console.log(error);
                             }
                         })
-                        this.echo("Thank you for sending your information!")
+                        this.echo("Thank you for sending your information. I will be in touch with you soon.")
                     }
                 }
                 else if (item.name === "message"){
                     item.val = command;
+                    $("#" + item.name).val(item.val);
+                    console.log(item.val);
                     for(var i=0; i < data.length; i++){
                         let name = data[i].name;
                         let val = data[i].val;
@@ -76,6 +78,7 @@ $(document).ready(function() {
                 }
                 else{
                     item.val = command;
+                    $("#" + item.name).val(item.val);
                     count++;
                     let nextItem = data[count];
                     if (nextItem && nextItem.text){
@@ -91,4 +94,20 @@ $(document).ready(function() {
         name: 'gporter' 
     }
     );
+
+    $("#btn-save").off("click").on("click", function(){
+        $("#btn-save").prop("disabled", true);
+        $.ajax({
+            url: '/contact_send',
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function(response){
+                $("#btn-save").prop("disabled", false);
+                $("#span-submit-line").text("Thank you for sending your information. I will be in touch with you soon.");
+            },
+            error: function(error){
+                console.log(error);
+            }
+        })
+    });
 });

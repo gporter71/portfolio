@@ -2,7 +2,6 @@ from flask import Flask, request, render_template, redirect
 from flask_mail import Mail, Message
 import os
 from dotenv import load_dotenv
-#from signalwire.rest import Client as signalwire_client
 import re
 import git
 
@@ -47,7 +46,7 @@ def contact():
 
 @app.route('/contact_save', methods=["POST"])
 def contact_save():
-    return render_template('contact.html')
+    return "Thank you for sending your information! I will be in touch with you very soon."
 
 @app.route('/contact_send', methods=['POST'])
 def contact_send():
@@ -57,7 +56,8 @@ def contact_send():
         email = request.form['email']
         message = request.form['message']
 
-        msg = Message("Hey Gabriel", sender="bottyforscotty@gmail.com", recipients = ["gporter71@gmail.com"])
+        #hard coded recipient to send me an email with the information that was filled out
+        msg = Message("Hey Gabriel", sender=os.getenv('MAIL_USERNAME'), recipients = ["gporter71@gmail.com"])
         body = "Hey Gabe, you got a new message on your website"
         body += "\n message is as follows: '" + message + "'"
         body += "\n Contact Info:"
@@ -69,3 +69,4 @@ def contact_send():
         mail.send(msg)
         return "Success"
     return "Failure"
+
