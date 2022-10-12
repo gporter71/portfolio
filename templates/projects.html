@@ -6,5 +6,19 @@
 {% block body %}
 	<!-- <script src="{{url_for('static', filename='js/index.js')}}"></script> -->
 
-    <h3> Here is where I will list my projects.</h3>
+    <section class="projects" id="projects" style="text-align:center; margin:auto;">
+        <h3 style="text-align: center;">My Most recent projects.</h3>
+        <div class="project-container" style="text-align: center; margin:auto;">
+            <div class="project-container project-card">
+                <img
+                src="{{url_for('static', filename='images/Website_Screen_Capture.png')}}"
+                alt="website"
+                loading="lazy"
+                class="project-pic"/>
+                <h3 class="project-title">Portfolio Website</h3>
+                <p class="project-details">A simple website to showcase a little bit of my knowledge. My Favorite thing about this website is being able to automatically update the website by pushing code to Github with the use of a webhook.</p>
+                <a href="https://github.com/gporter71/portfolio" target="_blank" class="project-link">View the Code!</a>
+            </div>
+        </div>
+    </section>
 {% endblock %}
