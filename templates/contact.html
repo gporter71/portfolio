@@ -9,32 +9,42 @@
 <script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
 <script src="{{url_for('static', filename='js/contact.js')}}"></script>
 
+
 <div>
-  <form action="{{url_for('contact_save')}}" method='post'>
-    <div class="row m-0">
+  <form name="form-contact" action="{{url_for('contact_save')}}" method='post'>
+    <div class="row m-0" style="padding-top:100px;">
       <div class="col-sm-2"></div>
-      <div class="col-sm-4" id="div-terminal"></div>
-      <div class="col-sm-4" style="background-color: gray;">
-        
+      <div class="col-sm-4" id="div-terminal" style="overflow-y: auto; height:60vh;"></div>
+      <div class="col-sm-4" style="background-color: gray; height:60vh;">
+
           <label for="name">Name</label>
+          <label id="name-valid"></label>
           <input type="text" id="name" name="name" placeholder="Your name..">
         
           <label for="email">Email</label>
-          <input type="text" id="email" name="email" placeholder="Your email..">
+          <label id="email-valid"></label>
+          <input type="email" id="email" name="email" placeholder="Your email..">
           
           <label for="phone">Phone</label>
-          <input type="text" id="phone" name="phone" placeholder="Your phone number..">
+          <label id="phone-valid"></label>
+          <input type="phone" id="phone" name="phone" placeholder="Your phone number..">
         
           <label for="message">Message</label>
           <textarea id="message" name="message" placeholder="Write something.."></textarea>
         
           <input class="save-button" type="button" id="btn-save" value="submit" />
-          <span id="span-submit-line"></span>
         
       </div>
       <div class="col-sm-2"></div>
     </div>
   </form>
+</div>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <span id="span-submit-line" style="text-align: center;"></span>
+  </div>
+  <div class="col-sm-2"></div>
 </div>
 
 {% endblock %}
